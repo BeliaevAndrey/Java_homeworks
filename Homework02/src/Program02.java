@@ -4,12 +4,20 @@ public class Program02 {
     public static void main(String[] args) {
         Logger log = Logger.getLogger("Program02");
         System.out.println("Starting Task 01 \"Hundred Tests\"");
+        long sTime = System.nanoTime();
         try {
-            hundredTests.fileOut();
-        } catch (Exception exc) {
-            log.warning(exc.getMessage());
+            hundredTests.fileOut1();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
-        System.out.println("Starting Task 02 \"Students\"");
+        System.out.println(System.nanoTime() - sTime);
+        sTime = System.nanoTime();
+        try {
+            hundredTests.fileOut2();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println(System.nanoTime() - sTime);
         try {
             students.parseFile("students.txt");
         } catch (Exception exc) {
