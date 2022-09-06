@@ -7,17 +7,18 @@ public class Program02 {
         long sTime = System.nanoTime();
         try {
             hundredTests.fileOut1();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        } catch (Exception exc) {
+            log.warning(exc.getMessage());
         }
         System.out.println(System.nanoTime() - sTime);
         sTime = System.nanoTime();
         try {
             hundredTests.fileOut2();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        } catch (Exception exc) {
+            log.warning(exc.getMessage());
         }
         System.out.println(System.nanoTime() - sTime);
+        System.out.println("Starting Task 02 \"Students\"");
         try {
             students.parseFile("students.txt");
         } catch (Exception exc) {
