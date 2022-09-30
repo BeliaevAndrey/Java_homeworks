@@ -9,26 +9,25 @@ import java.util.logging.Logger;
 public class ViewService {
 
 
-    String greetText = """
-            Программа предоставляет список ноутбуков.
-            Список позаимствован с сайта www.notik.ru
-            в тренировочных целях.
-            """;
-    String menuText = """
-            (P)rint     Распечатать весь список
-            (F)ilter    Фильтровать по параметрам
-            (E)xit      Выход
-            """;
-    String filterText = """
-            Фильтровать по:
-            (P)rocessor     Процессору
-            (R)AM           Объему оперативной памяти
-            (D)sik          Объему НЖМД (ТТД)
-            (B)rand         Производителю
-            (O)s            Операционной системе
-            (C)olor         Цвету
-            (E)xit          Выход
-            """;
+    String greetText =
+            "Программа предоставляет список ноутбуков." + "\n" +
+            "Список позаимствован с сайта www.notik.ru" + "\n" +
+            "в тренировочных целях.";
+    String menuText =
+            "(P)rint     Распечатать весь список" + "\n" +
+            "(F)ilter    Фильтровать по параметрам" + "\n" +
+            "(E)xit      Выход";
+
+    String filterText =
+            "Фильтровать по:" + "\n" +
+            "(P)rocessor     Процессору" + "\n" +
+            "(R)AM           Объему оперативной памяти" + "\n" +
+            "(D)sik          Объему НЖМД (ТТД)" + "\n" +
+            "(B)rand         Производителю" + "\n" +
+            "(O)s            Операционной системе" + "\n" +
+            "(C)olor         Цвету" + "\n" +
+            "(E)xit          Выход";
+
     static Map<String, String> menus = new HashMap<>();
 
     public void init() {
