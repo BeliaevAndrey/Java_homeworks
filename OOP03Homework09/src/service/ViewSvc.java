@@ -39,7 +39,7 @@ public class ViewSvc {
                 "4: Search person and Print Relations\n" +
                 "0: Exit\n" + "_> ";
 
-        
+
         System.out.print(menuLine);
     }
 }
