@@ -8,13 +8,15 @@ import java.util.Deque;
 import java.util.List;
 
 public class ViewSvc {
-    public void printTree(Deque<Relatives> list) {
+    public void printTree(List<Relatives> list) {
         for (Relatives r : list) {
-            if (r.getR().equals(Relations.FATHER))
+            if (r.getR().equals(Relations.FATHER)) {
                 System.out.print("||    |\n||    |____");
-            else
+                System.out.println(r.getR() + " of " + r.getSecond());
+            } else {
                 System.out.print("||\n||_");
-            System.out.println(r);
+                System.out.println(r);
+            }
         }
     }
 
@@ -29,15 +31,15 @@ public class ViewSvc {
     }
 
     public void printMenu() {
-        String menuLine ="\n\n" +
+        String menuLine = "\n\n" +
                 "Enter your choice:\n" +
-                        "1: Print Tree(mCnt.tree)\n" +
-                        "2: Print Full Human List\n" +
-                        "3: Print Full Relatives List\n" +
-                        "4: Search person and Print Relations\n" +
-                        "0: Exit\n" + "_> ";
+                "1: Print Tree\n" +
+                "2: Print Full Human List\n" +
+                "3: Print Full Relatives List\n" +
+                "4: Search person and Print Relations\n" +
+                "0: Exit\n" + "_> ";
 
-        ;
+        
         System.out.print(menuLine);
     }
 }

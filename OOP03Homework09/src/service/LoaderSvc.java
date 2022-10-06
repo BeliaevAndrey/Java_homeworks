@@ -53,6 +53,7 @@ public class LoaderSvc {
 
         humans.add(new Human("Francine", "Peters", "Frederichs", "F", 30));       // 6
         bloodline.add(new Relatives(humans.get(4), humans.get(6), Relations.SPOUSE));
+        bloodline.add(new Relatives(humans.get(6), humans.get(4), Relations.SPOUSE));
 
         humans.add(new Human("Adam", "Smith", "Jedidiahs", "M", 12));    // 7
         bloodline.add(new Relatives(humans.get(7), humans.get(4), Relations.SON));

@@ -7,7 +7,7 @@ import people.Relatives;
 import java.util.*;
 
 public class Controller {
-    public Deque<Relatives> tree = new ArrayDeque<>();
+    public List<Relatives> tree = new ArrayList<>();
 
     public Controller() {
     }
@@ -23,8 +23,8 @@ public class Controller {
         return cell;
     }
 
-    Deque<Relatives> searchByStatus(Human person, Relations status, List<Relatives> rltList) {
-        Deque<Relatives> response = new ArrayDeque<>();
+    List<Relatives> searchByStatus(Human person, Relations status, List<Relatives> rltList) {
+        List<Relatives> response = new ArrayList<>();
         for (Relatives r : rltList) {
             if (r.getFirst().equals(person) && r.getR().equals(status)) {
                 response.add(r);
@@ -35,7 +35,7 @@ public class Controller {
 
     public void buildTree(Human startPerson, List<Relatives> rltList) {
         tree.addAll(searchByStatus(startPerson, Relations.SPOUSE, rltList));
-        Deque<Relatives> tmp = (searchByStatus(startPerson, Relations.FATHER, rltList));
+        List<Relatives> tmp = (searchByStatus(startPerson, Relations.FATHER, rltList));
         tree.addAll(tmp);
         for (Relatives persons : tmp) {
             buildTree(persons.getSecond(), rltList);
