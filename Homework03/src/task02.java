@@ -28,8 +28,10 @@ public class task02 {
             Program.input.next();
         }
         int[] array = new int[ln];
+        Random rnd = new Random();
         for (int i = 0; i < ln; i++) {
-            array[i] = new Random().nextInt(-10, 10);
+            array[i] = rnd.nextInt(21) - 10;
+//            array[i] += array[i] * (-2) * rnd.nextInt(2);
         }
         return array;
     }
