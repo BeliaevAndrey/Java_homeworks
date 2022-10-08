@@ -2,8 +2,8 @@ package model.services;
 
 import model.ComputerComparator;
 import computerCls.extending.NoteBook;
-import computerCls.Sortable;
-import model.Printable;
+import model.interfaces.Sortable;
+import model.interfaces.Printable;
 
 import java.util.Collections;
 import java.util.List;
