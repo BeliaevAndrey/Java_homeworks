@@ -11,5 +11,31 @@ Loger в main продемонстрировать поведение прогр
 ___
 ## _Решение_
 ### _Файлы:_
-* src/
+
 * src/MainOOP03  --  класс приложения
+* src/computerCls/ -- директория классов
+  * Computer.java -- абстрактный класс Computer
+  * Memory.java -- перечисление объемов памяти
+
+* src/computerCls/extenders/ -- директория дочерних классов
+  + + NoteBook.java  -- класс-наследник Computer
+  + + PC.java  -- класс-наследник Computer
+
+* src/exceptionsLocal/  -- директория самодельных исключений
+  + StupidUserException.java  -- самодельное исключение
+
+* src/model/  -- общая структурная директория
+  * ComputerComparator.java  -- компаратор
+  * Controller.java  -- контроллер
+
+  * src/model/interfaces/   -- директория интерфейсов
+    + + Printable.java  -- интерфейс печати
+    + + Sortable.java  -- интерфейс сортировки
+
+  * src/model/services/  -- директория сервисов
+    + + NotebookLoader.java  -- сервис загрузки данных ноутбуков
+    + + PCLoader.java  -- сервис загрузки данных перс. компьютеров
+    + + NotebookService.java  -- сервис обработки данных ноутбуков
+    + + PCService.java  -- сервис обработки данных прес. компьютеров
+    + + NotebookFilterService.java  -- сервис фильтра данных ноутбуков
+    + + PCFilterService.java  -- сервис фильтра данных прес. компьютеров
