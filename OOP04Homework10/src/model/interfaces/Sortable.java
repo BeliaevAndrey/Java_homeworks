@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface Sortable<T extends Computer> {
 
-    List<T> sort(List<T> list);
+    List<T> sortUnitsById(List<T> list);
 
 }

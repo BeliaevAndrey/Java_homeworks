@@ -1,4 +1,4 @@
-package computerCls.extending;// data
+package computerCls.extenders;// data
 
 import computerCls.Computer;
 import computerCls.Memory;

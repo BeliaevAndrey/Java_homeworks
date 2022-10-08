@@ -1,7 +1,7 @@
 package model.services;
 
 import model.ComputerComparator;
-import computerCls.extending.NoteBook;
+import computerCls.extenders.NoteBook;
 import model.interfaces.Sortable;
 import model.interfaces.Printable;
 
@@ -14,15 +14,16 @@ public class NotebookService implements Sortable<NoteBook>, Printable<NoteBook> 
     }
 
     @Override
-    public List<NoteBook> sort(List<NoteBook> list) {
+    public List<NoteBook> sortUnitsById(List<NoteBook> list) {
         Collections.sort(list, new ComputerComparator());
         return list;
     }
 
     @Override
     public String printedVersion(List<NoteBook> unitList) {
+
         StringBuilder sb = new StringBuilder();
-        for (NoteBook ntb : unitList)
+        for (NoteBook ntb : sortUnitsById(unitList))
             sb.append(ntb).append("\n");
         return sb.toString();
     }

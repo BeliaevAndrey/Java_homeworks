@@ -1,7 +1,7 @@
 package model.services;
 
 import model.interfaces.Sortable;
-import computerCls.extending.PC;
+import computerCls.extenders.PC;
 import model.ComputerComparator;
 import model.interfaces.Printable;
 
@@ -14,14 +14,14 @@ public class PCService implements Sortable<PC>, Printable<PC> {
     }
 
     @Override
-    public List<PC> sort(List<PC> list){
+    public List<PC> sortUnitsById(List<PC> list){
         Collections.sort(list, new ComputerComparator());
         return list;
     }
 
     public String printedVersion(List<PC> unitList) {
         StringBuilder sb = new StringBuilder();
-        for (PC unit : unitList){
+        for (PC unit : sortUnitsById(unitList)){
             sb.append(unit.toString()).append("\n");
         }
         return sb.toString();

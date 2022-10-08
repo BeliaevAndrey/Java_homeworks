@@ -1,11 +1,12 @@
 package model.services;
 
-import computerCls.extending.NoteBook;
+import computerCls.extenders.NoteBook;
+import model.interfaces.Printable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotebookFilterService {
+public class NotebookFilterService implements Printable<NoteBook> {
     public NotebookFilterService() {
 
     }
@@ -30,47 +31,21 @@ public class NotebookFilterService {
         }
     }
 
-    public List<NoteBook> commonFilter(List<NoteBook> source, String field,  String request) {
+    public String commonFilter(List<NoteBook> source, String field,  String request) {
         List<NoteBook> filtered = new ArrayList<>();
         for (NoteBook unit : source) {
             if (getFiled(unit, field).equals(request))
                 filtered.add(unit);
         }
-        return filtered;
+        return printedVersion(filtered);
     }
-//    public List<NoteBook> filterBySsd(List<NoteBook> source, String request) {
-//        List<NoteBook> filtered = new ArrayList<>();
-//        for (NoteBook unit : source) {
-//            if (unit.getId().equals(request))
-//                filtered.add(unit);
-//        }
-//        return filtered;
-//    }
-//
-//    public List<NoteBook> filterByMemory(List<NoteBook> source, String request) {
-//        List<NoteBook> filtered = new ArrayList<>();
-//        for (NoteBook unit : source) {
-//            if (unit.getId().equals(request))
-//                filtered.add(unit);
-//        }
-//        return filtered;
-//    }
-//
-//    public List<NoteBook> filterByModel(List<NoteBook> source, String request) {
-//        List<NoteBook> filtered = new ArrayList<>();
-//        for (NoteBook unit : source) {
-//            if (unit.getId().equals(request))
-//                filtered.add(unit);
-//        }
-//        return filtered;
-//    }
-//
-//    public List<NoteBook> filterByBattery(List<NoteBook> source, String request) {
-//        List<NoteBook> filtered = new ArrayList<>();
-//        for (NoteBook unit : source) {
-//            if (unit.getId().equals(request))
-//                filtered.add(unit);
-//        }
-//        return filtered;
-//    }
+
+    @Override
+    public String printedVersion(List<NoteBook> unitList) {
+        StringBuilder sb = new StringBuilder("\n");
+        for (NoteBook unit : unitList){
+            sb.append(unit).append("\n");
+        }
+        return sb.toString();
+    }
 }

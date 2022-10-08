@@ -1,7 +1,7 @@
 package model;
 
-import computerCls.extending.NoteBook;
-import computerCls.extending.PC;
+import computerCls.extenders.NoteBook;
+import computerCls.extenders.PC;
 import model.services.*;
 
 import java.util.ArrayList;
@@ -38,8 +38,13 @@ public class Controller {
         return pcComputers;
     }
 
-    public List<NoteBook> filterNotebooks(String field, String request) {
-        NotebookFilterService nfs = new NotebookFilterService();
-        return nfs.commonFilter(notebooks, field, request);
+    public String filterNotebooks(String field, String request) {
+        NotebookFilterService nFs = new NotebookFilterService();
+        return nFs.commonFilter(notebooks, field, request);
+    }
+
+    public String filterPCs(String field, String request) {
+        PCFilterService pcFs = new PCFilterService();
+        return pcFs.commonFilter(pcComputers, field, request);
     }
 }

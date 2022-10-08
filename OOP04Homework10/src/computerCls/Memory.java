@@ -1,5 +1,10 @@
 package computerCls;
 
 public enum Memory {
-    SIXTEEN, ONE, TWO, FOUR
+    ONE,
+    TWO,
+    FOUR,
+    SIX,
+    EIGHT,
+    SIXTEEN
 }
