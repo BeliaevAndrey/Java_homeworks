@@ -40,4 +40,12 @@ public class PCFilterService implements Printable<PC> {
         return sb.toString();
     }
 
+    @Override
+    public void print(List<PC> unitList) {
+        StringBuilder sb = new StringBuilder("\n");
+        for (PC unit : unitList){
+            sb.append(unit).append("\n");
+        }
+        System.out.println(sb);
+    }
 }

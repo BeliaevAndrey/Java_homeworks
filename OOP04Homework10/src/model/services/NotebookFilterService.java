@@ -48,4 +48,13 @@ public class NotebookFilterService implements Printable<NoteBook> {
         }
         return sb.toString();
     }
+
+    @Override
+    public void print(List<NoteBook> unitList) {
+        StringBuilder sb = new StringBuilder("\n");
+        for (NoteBook unit : unitList){
+            sb.append(unit).append("\n");
+        }
+        System.out.println(sb);
+    }
 }

@@ -26,4 +26,12 @@ public class PCService implements Sortable<PC>, Printable<PC> {
         }
         return sb.toString();
     }
+
+    public void print(List<PC> unitList) {
+        StringBuilder sb = new StringBuilder();
+        for (PC unit : sortUnitsById(unitList)){
+            sb.append(unit.toString()).append("\n");
+        }
+        System.out.println(sb);
+    }
 }
