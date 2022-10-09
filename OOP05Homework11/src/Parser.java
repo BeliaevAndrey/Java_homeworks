@@ -20,7 +20,7 @@ public class Parser {
 
         Logger log = Logger.getAnonymousLogger();
         Path dir = Paths.get(System.getProperty("user.dir"));
-        String filePath = Paths.get(dir.toString(), "OOP04Homework11", "data", "Desten_price.csv").toString();
+        String filePath = Paths.get(dir.toString(), "OOP05Homework11", "data", "Desten_price.csv").toString();
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String line;
