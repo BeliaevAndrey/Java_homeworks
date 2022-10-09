@@ -12,7 +12,7 @@ ___
 ## _Решение_
 ### _Файлы:_
 
-* src/MainOOP04.java  --  класс приложения
+* src/MainOOP03  --  класс приложения
 * src/computerCls/ -- директория классов
   * Computer.java -- абстрактный класс Computer
   * Memory.java -- перечисление объемов памяти
