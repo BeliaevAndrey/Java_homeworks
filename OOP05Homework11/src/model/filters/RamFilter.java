@@ -3,11 +3,9 @@ package model.filters;
 import classes.partClasses.Part;
 import classes.partClasses.Ram;
 import model.Controller;
-import model.services.RamService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class RamFilter {
     private final List<Plates> memSet = new ArrayList<>();
@@ -54,24 +52,26 @@ public class RamFilter {
         }
     }
 
-    int adder(List<Part> ramList) {
+    boolean checker(List<Part> ramList, int wishedVol) {
+        if (ramList.size() > 4 || ramList.size() < 1)
+            return false;
         int result = 0;
         for (Part module : ramList) {
             result += ((Ram) module).getIntRamVol();
         }
-        return result;
+        return Math.abs(result - wishedVol) < 2;
     }
 
-    public List<Part> getMemSet(int memVol) {       // TODO Correct calculating!!!
+    public List<Part> getMemSet(int wishedVol) {       // TODO Correct calculating!!!
         List<Ram> ramStore = control.ramSvc.getRamList();
         List<Part> ramList = new ArrayList<>();
-        count(memVol);
+        count(wishedVol);
         for (Plates plate : memSet) {
             for (Ram module : ramStore) {
                 if (module.getIntRamVol() == plate.getVol()) {
                     ramList.add(module);
                 }
-                if (adder(ramList) >= memVol) {
+                if (checker(ramList, wishedVol)) {
                     break;
                 }
 

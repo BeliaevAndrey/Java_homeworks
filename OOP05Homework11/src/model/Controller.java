@@ -43,10 +43,10 @@ public class Controller {
 //        vs.printTxtList(cpuSvc.getUnitsStringList());
 //        vs.printTxtList(ramSvc.getUnitsStringList());
 //        vs.printTxtList(mBoardSvc.getUnitsStringList());
-        vs.printTxtList(hddSvc.getUnitsStringList());
+//        vs.printTxtList(hddSvc.getUnitsStringList());
 //        vs.printTxtList(ssdSvc.getUnitsStringList());
 //        vs.printTxtList(vCardSvc.getUnitsStringList());
-//        vs.printTxtList(pwrSupSvc.getUnitsStringList());
+        vs.printTxtList(pwrSupSvc.getUnitsStringList());
 //        vs.printTxtList(chassisSvc.getUnitsStringList());
 
     }

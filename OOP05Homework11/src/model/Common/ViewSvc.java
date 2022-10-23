@@ -49,4 +49,9 @@ public class ViewSvc {
         return chSizes[scanKeybSvc.scanNum() - 1];
     }
 
+    public int choosePwrCap() {
+        System.out.println("Input Power Supply capacity (W, 900 max): ");
+        return scanKeybSvc.scanNum();
+    }
+
 }

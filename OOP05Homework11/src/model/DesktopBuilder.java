@@ -16,32 +16,25 @@ public class DesktopBuilder {
     private final ViewSvc vs = new ViewSvc();
     private final ScanKeybSvc sk = new ScanKeybSvc();
 
-    private int ramVol = 0;
-
-    Controller control;// = null;
-
-    private final Part mainBoard = null;
-
+    Controller control;
 
     public DesktopBuilder(Controller control) {
         this.control = control;
     }
 
 
-    void installRam() {
+    void installRam(int ramVol) {
         List<Ram> memSet = new ArrayList<>();
-        RamFilter ramF = new RamFilter(control);
-        for (Part module : ramF.getMemSet(aMachine.getRamVol())) {
+        RamFilter ramFilter = new RamFilter(control);
+        for (Part module : ramFilter.getMemSet(ramVol)) {
             memSet.add((Ram) module);
         }
         aMachine.setRam(memSet);
     }
 
     void installMainBoard() {
-        MainBoardFilter mbf = new MainBoardFilter(control);
-        System.out.println(aMachine.getCpu());  // TODO remove
-        System.out.println(aMachine.getCpu().getSocket());  // TODO remove
-        HashMap<Integer, Part> mbNumMap = mbf.mbBySocketFilter(aMachine.getCpu().getSocket());
+        MainBoardFilter mbF = new MainBoardFilter(control);
+        HashMap<Integer, Part> mbNumMap = mbF.mbBySocketFilter(aMachine.getCpu().getSocket());
         vs.printNumberedMap(mbNumMap);
         System.out.print("Choose a main board from a list: ");
         int num = sk.scanNum();
@@ -49,17 +42,16 @@ public class DesktopBuilder {
     }
 
     void installSsd() {
-        SsdFilter ssdf = new SsdFilter(control);
-        HashMap<Integer, Part> ssdNumMap = ssdf.ssdByVolFilter(vs.chooseDiskVol("SSD"));
+        SsdFilter ssdF = new SsdFilter(control);
+        HashMap<Integer, Part> ssdNumMap = ssdF.ssdByVolFilter(vs.chooseDiskVol("SSD"));
         System.out.println("Choose ssd from a list: ");
         vs.printNumberedMap(ssdNumMap);
         aMachine.setSsd((Ssd) ssdNumMap.get(sk.scanNum()));
     }
 
     void installHdd() {
-        HddFilter hddf = new HddFilter(control);
-        HashMap<Integer, Part> hddNumMap = hddf.hddByVolFilter(vs.chooseDiskVol("Hard disk"));
-        System.out.println(hddNumMap); // TODO remove
+        HddFilter hddF = new HddFilter(control);
+        HashMap<Integer, Part> hddNumMap = hddF.hddByVolFilter(vs.chooseDiskVol("Hard disk"));
         System.out.println("Choose hdd from a list: ");
         vs.printNumberedMap(hddNumMap);
         aMachine.setHdd((Hdd) hddNumMap.get(sk.scanNum()));
@@ -73,15 +65,32 @@ public class DesktopBuilder {
         aMachine.setChassis((Chassis) chassisNumMap.get(sk.scanNum()));
     }
 
+    void installVCard() {
+        VCardFilter vCardFilter = new VCardFilter(control);
+        HashMap<Integer, Part> vCardNumMap = vCardFilter.videCardFilter();
+        vs.printNumberedMap(vCardNumMap);
+        System.out.print("Choose Video Card from a list above: ");
+        aMachine.setVCard((VideoCard) vCardNumMap.get(sk.scanNum()));
+    }
+
+    void installPowerUnit() {
+        PowerSupplyFilter powerSupplyFilter = new PowerSupplyFilter(control);
+        HashMap<Integer, Part> pwrSupNumMap = powerSupplyFilter.chassisBySizeFilter(vs.choosePwrCap());
+        vs.printNumberedMap(pwrSupNumMap);
+        System.out.print("Choose Power Supply from a list above (0 to decline): ");
+        aMachine.setPowerUnit((PowerSupply) pwrSupNumMap.get(sk.scanNum()));
+    }
+
     public DesktopPC buildDesktop(Cpu proc, int ramVol) {
-        aMachine.setRamVol(ramVol);
         aMachine.setCpu(proc);
+        aMachine.setRamVol(ramVol);
         installMainBoard();
-        installRam();
+        installRam(ramVol);
+        installVCard();
         installSsd();
         installHdd();
         installChassis();
-//        aMachine.setPowerUnit();
+        installPowerUnit();
         return aMachine;
     }
 }
