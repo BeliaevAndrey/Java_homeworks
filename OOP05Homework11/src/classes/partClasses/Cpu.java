@@ -1,11 +1,27 @@
 package classes.partClasses;
 
-public class Cpu {
-    private final String brand;
-    private final String model;
+public class Cpu extends Part {
 
-    public Cpu(String brand, String model) {
-        this.brand = brand;
-        this.model = model;
+    private String family;
+    private String socket;
+
+    public Cpu(String brand, String family, String socket) {
+        super(brand);
+        this.family = family;
+        this.socket = socket;
+    }
+
+
+    public String getFamily() {
+        return family;
+    }
+
+    public String getSocket() {
+        return socket;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("CPU. brand: %s, family: %s, socket: %s", this.brand, family, socket) ;
     }
 }

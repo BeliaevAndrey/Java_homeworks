@@ -1,4 +1,39 @@
 package classes.partClasses;
 
-public class Ram {
+public class Ram extends Part{
+
+    private String ramVol;
+    private int intRamVol;
+    private String ramType;
+    private String ramParam;
+
+    public Ram(String ramVol, String ramType, String ramParam) {
+        super("RAM");
+        this.ramVol = ramVol;
+        this.ramType = ramType;
+        this.ramParam = ramParam;
+        this.intRamVol = Integer.parseInt(ramVol.replaceAll("GB", ""));
+    }
+
+    public String getRamVol() {
+        return ramVol;
+    }
+
+    public int getIntRamVol(){
+        return intRamVol;
+    }
+
+    public String getRamType() {
+        return ramType;
+    }
+
+    public String getRamParam() {
+        return ramParam;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s. Volume: %s\n     Type: %s\n",
+                this.brand, ramVol, ramType);
+    }
 }
