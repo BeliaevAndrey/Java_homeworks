@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RamFilter {
-    private final List<Plates> memSet = new ArrayList<>();
+    public final List<Plates> memSet = new ArrayList<>();
+    private final List<Part> ramList = new ArrayList<>();
 
     private final Controller control;
 
@@ -30,7 +31,7 @@ public class RamFilter {
 
     }
 
-    void count(int inVol) {
+    public void count(int inVol) {
         memSet.clear();
         int vol = inVol;
         int position = 0;
@@ -47,89 +48,33 @@ public class RamFilter {
                 position++;
             }
         }
-        if (memSet.size() > 4) {
-            count(inVol + 1);
-        }
     }
 
     boolean checker(List<Part> ramList, int wishedVol) {
-        if (ramList.size() > 4 || ramList.size() < 1)
+        if (ramList.size() > 4)
             return false;
         int result = 0;
         for (Part module : ramList) {
             result += ((Ram) module).getIntRamVol();
         }
-        return Math.abs(result - wishedVol) < 2;
+        return Math.abs(result - wishedVol) < 3;
     }
 
-    public List<Part> getMemSet(int wishedVol) {       // TODO Correct calculating!!!
+    public List<Part> getRamList(int wishedVol) {
         List<Ram> ramStore = control.ramSvc.getRamList();
-        List<Part> ramList = new ArrayList<>();
         count(wishedVol);
         for (Plates plate : memSet) {
             for (Ram module : ramStore) {
                 if (module.getIntRamVol() == plate.getVol()) {
                     ramList.add(module);
-                }
-                if (checker(ramList, wishedVol)) {
                     break;
                 }
-
             }
+        }
+        if (!checker(ramList, wishedVol)) {
+            ramList.clear();
+            getRamList(wishedVol + 1);
         }
         return ramList;
     }
-
-//    public static void main(String[] args) {
-//        RamFilter cntP = new RamFilter();
-//
-//
-//        cntP.count(64);
-//        System.out.println(cntP.memSet);
-//        System.out.println(cntP.adder());
-//        System.out.println("=".repeat(40));
-//
-//        cntP.count(63);
-//        System.out.println(cntP.memSet);
-//        System.out.println(cntP.adder());
-//        System.out.println("=".repeat(40));
-//
-//        cntP.count(56);
-//        System.out.println(cntP.memSet);
-//        System.out.println(cntP.adder());
-//        System.out.println("=".repeat(40));
-//
-//        cntP.count(43);
-//        System.out.println(cntP.memSet);
-//        System.out.println(cntP.adder());
-//        System.out.println("=".repeat(40));
-//
-//        cntP.count(11);
-//        System.out.println(cntP.memSet);
-//        System.out.println(cntP.adder());
-//        System.out.println("=".repeat(40));
-//
-//        cntP.count(16);
-//        System.out.println(cntP.memSet);
-//        System.out.println(cntP.adder());
-//        System.out.println("=".repeat(40));
-//
-//        cntP.count(32);
-//        System.out.println(cntP.memSet);
-//        System.out.println(cntP.adder());
-//        System.out.println("=".repeat(40));
-//
-//        cntP.count(17);
-//        System.out.println(cntP.memSet);
-//        System.out.println(cntP.adder());
-//        System.out.println("=".repeat(40));
-//
-//        cntP.count(33);
-//        System.out.println(cntP.memSet);
-//        System.out.println(cntP.adder());
-//        System.out.println("=".repeat(40));
-//
-//    }
-
-
 }

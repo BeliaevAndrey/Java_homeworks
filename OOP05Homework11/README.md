@@ -9,3 +9,14 @@
 ___
 ## _Решение_
 ### _Файлы:_
+* /src/classes/DesktopPC.java -- Класс PC
+  * /src/classes/partClasses -- Классы комплектующих
+* /src/model/ -- Классы деталей
+  * /src/model/common -- Классы инерфейса юзера
+  * /src/model/filters -- Классы фильтров
+  * /src/model/services -- Классы сервисов
+  * /src/model/Controller.java -- Класс-контроллер
+  * /src/model/DesktopBuilder.java -- Класс-билдер
+  * /src/model/Preloader.java -- Класс подгрузки деталей
+* /src/MainOOP05 -- Класс приложения
+

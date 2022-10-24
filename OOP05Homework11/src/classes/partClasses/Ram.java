@@ -33,7 +33,7 @@ public class Ram extends Part{
 
     @Override
     public String toString() {
-        return String.format("%s. Volume: %s\n     Type: %s\n",
+        return String.format("%s. Volume: %s; Type: %s",
                 this.brand, ramVol, ramType);
     }
 }

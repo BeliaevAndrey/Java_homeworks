@@ -1,9 +1,9 @@
-package model.Common;
+package model.common;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class ScanKeybSvc {
+public class ScanKbdSvc {
 
     public int scanNum() {
         boolean flag;
@@ -21,8 +21,20 @@ public class ScanKeybSvc {
         return num;
     }
 
-//    public static void main(String[] args) {
-//        System.out.println(new ScanKeybSvc().scanNum());
-//        System.out.println(new ScanKeybSvc().scanNum());
-//    }
+    public String scanLine() {
+        boolean flag;
+        String lineIn = null;
+        do {
+            flag = false;
+            try {
+                lineIn = new Scanner(System.in).nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("INTERNAL ERROR.");
+                flag = true;
+            }
+        } while (flag);
+
+        return lineIn;
+    }
+
 }

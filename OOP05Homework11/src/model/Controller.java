@@ -3,12 +3,12 @@ package model;
 import classes.DesktopPC;
 import classes.partClasses.Cpu;
 import classes.partClasses.Part;
-import model.Common.ViewSvc;
+import model.common.ScanKbdSvc;
+import model.common.ViewSvc;
 import model.filters.CpuFilter;
 import model.services.*;
 
 import java.util.HashMap;
-import java.util.Scanner;
 
 
 public class Controller {
@@ -24,10 +24,6 @@ public class Controller {
     public final VideoCardService vCardSvc = new VideoCardService();
 
 
-//    public Controller() {
-//
-//    }
-
     public void loadParts() {
         Preloader preLdr = new Preloader();
         preLdr.parser();
@@ -40,59 +36,91 @@ public class Controller {
         pwrSupSvc.load(preLdr.parts.get("powerSupply"));
         chassisSvc.load(preLdr.parts.get("chassis"));
 
-//        vs.printTxtList(cpuSvc.getUnitsStringList());
-//        vs.printTxtList(ramSvc.getUnitsStringList());
-//        vs.printTxtList(mBoardSvc.getUnitsStringList());
-//        vs.printTxtList(hddSvc.getUnitsStringList());
-//        vs.printTxtList(ssdSvc.getUnitsStringList());
-//        vs.printTxtList(vCardSvc.getUnitsStringList());
-        vs.printTxtList(pwrSupSvc.getUnitsStringList());
-//        vs.printTxtList(chassisSvc.getUnitsStringList());
-
     }
 
-    public void pickAnOrder() {
+    public void startBuildPC() {
+        ScanKbdSvc scanKbd = new ScanKbdSvc();
         CpuFilter cf = new CpuFilter();
 
-        try(Scanner scn = new Scanner(System.in)) {
-            boolean flag = true;
-            HashMap<Integer, Part> cpuList = new HashMap<>();
-            vs.printTxtList(cpuSvc.getUnitsStringList());
-            while(flag) {
-                System.out.print("Choose CPU brand: ");
-                String brand = scn.nextLine();
+        HashMap<Integer, Part> cpuList = new HashMap<>();
+        String brand = null;
+        int ramVol;
+        Cpu proc;
+
+        boolean flag = true;
+        while (flag) {
+            brand = vs.chooseCpu();
+            if (!brand.equalsIgnoreCase("cancel")) {
                 cpuList = cf.brandFilter(cpuSvc.getCpuList(), brand);
-                if (cpuList.size() > 0){
+                if (cpuList.size() > 0) {
                     flag = false;
-                }else {
-                    System.out.println("Incorrect input. Try again, please.");
+                } else {
+                    vs.printText("Incorrect input. Try again, please.");
                 }
+            } else {
+                flag = false;
             }
+        }
+        if (!brand.equalsIgnoreCase("cancel")) {
             vs.printNumberedMap(cpuList);
-            System.out.print("Choose processor: ");
-            Cpu proc = (Cpu) cpuList.get(scn.nextInt());
+            vs.printPrompt("Choose processor: \b\r");
+            proc = (Cpu) cpuList.get(scanKbd.scanNum());
 
-            System.out.println(proc);
+            ramVol = vs.chooseRamVol();
 
-            System.out.print("Set RAM volume (max 64GB): ");
-            int ramVol = 0;
-            flag = true;
-            while (flag) {
-                ramVol = scn.nextInt();
-                if (ramVol <= 64 && ramVol > 0){
-                    flag = false;
-                }else {
-                    System.out.print("Incorrect input. Try again, please.\nSet RAM volume (max 64GB): ");
-                }
-            }
-
-            System.out.println(ramVol);
 
             DesktopBuilder dtBuild = new DesktopBuilder(this);
             DesktopPC newPC = dtBuild.buildDesktop(proc, ramVol);
-            System.out.println(newPC.toString());
+            if (newPC != null) {
+                vs.printText(newPC.toString());
+            } else {
+                vs.printText("Assembly cancelled!");
+            }
+        } else {
+            vs.printText("Assembly cancelled!");
         }
-
     }
+
+
+//    public void pickAnOrder() {
+//        CpuFilter cf = new CpuFilter();
+//
+//        try(Scanner scn = new Scanner(System.in)) {
+//            boolean flag = true;
+//            HashMap<Integer, Part> cpuList = new HashMap<>();
+//            while(flag) {
+//                vs.printText("Choose CPU brand (Intel, AMD): ");
+//                String brand = scn.nextLine();
+//                cpuList = cf.brandFilter(cpuSvc.getCpuList(), brand);
+//                if (cpuList.size() > 0){
+//                    flag = false;
+//                }else {
+//                    vs.printText("Incorrect input. Try again, please.");
+//                }
+//            }
+//            vs.printNumberedMap(cpuList);
+//            vs.printText("Choose processor: \r");
+//            Cpu proc = (Cpu) cpuList.get(scn.nextInt());
+//
+//            vs.printText("Set RAM volume (max 64GB): \r");
+//            int ramVol = 0;
+//            flag = true;
+//            while (flag) {
+//                ramVol = scn.nextInt();
+//                if (ramVol <= 64 && ramVol > 0){
+//                    flag = false;
+//                }else {
+//                    vs.printText("Incorrect input. Try again, please.\nSet RAM volume (max 64GB): ");
+//                }
+//            }
+//
+//            DesktopBuilder dtBuild = new DesktopBuilder(this);
+//            DesktopPC newPC = dtBuild.buildDesktop(proc, ramVol);
+//            if (newPC != null)
+//                vs.printText(newPC.toString());
+//            else vs.printText("Assembly cancelled!");
+//        }
+//
+//    }
 
 }

@@ -16,12 +16,9 @@ public class MainBoardFilter {
 
     public HashMap<Integer, Part> mbBySocketFilter(String socket) {
         HashMap<Integer, Part> mbNumberedList = new HashMap<>();
-
-//        Controller control = new Controller();
-//        MBoardService mbSvc = new MBoardService();
+        socket = socket.replaceAll("[Ss]ocket", "").strip();
 
         int counter = 0;
-
         for (MainBoard mb : control.mBoardSvc.getMbList()) {
             if (mb.getSocket().equals(socket)) {
                 mbNumberedList.put(++counter, mb);
