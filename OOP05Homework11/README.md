@@ -11,7 +11,7 @@ ___
 ### _Файлы:_
 * /src/classes/DesktopPC.java -- Класс PC
   * /src/classes/partClasses -- Классы комплектующих
-* /src/model/ -- Классы деталей
+* /src/model/ -- Классы логики
   * /src/model/common -- Классы инерфейса юзера
   * /src/model/filters -- Классы фильтров
   * /src/model/services -- Классы сервисов
