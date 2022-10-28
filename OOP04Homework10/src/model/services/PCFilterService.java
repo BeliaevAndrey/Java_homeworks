@@ -1,6 +1,6 @@
 package model.services;
 
-import computerCls.extenders.PC;
+import computerCls.impl.PC;
 import model.interfaces.Printable;
 
 import java.util.ArrayList;

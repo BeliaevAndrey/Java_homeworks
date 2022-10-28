@@ -1,7 +1,7 @@
 package model.services;
 
 import computerCls.Memory;
-import computerCls.extenders.PC;
+import computerCls.impl.PC;
 
 import java.util.Arrays;
 import java.util.List;

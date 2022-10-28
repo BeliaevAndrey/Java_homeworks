@@ -1,4 +1,4 @@
-package computerCls.extenders;
+package computerCls.impl;
 
 import computerCls.Computer;
 import computerCls.Memory;

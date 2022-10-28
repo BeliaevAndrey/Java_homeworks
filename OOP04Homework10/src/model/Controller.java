@@ -1,7 +1,7 @@
 package model;
 
-import computerCls.extenders.NoteBook;
-import computerCls.extenders.PC;
+import computerCls.impl.NoteBook;
+import computerCls.impl.PC;
 import model.services.*;
 
 import java.util.ArrayList;

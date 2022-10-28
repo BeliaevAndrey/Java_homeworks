@@ -1,6 +1,6 @@
 package model.services;
 
-import computerCls.extenders.NoteBook;
+import computerCls.impl.NoteBook;
 import model.interfaces.Printable;
 
 import java.util.ArrayList;

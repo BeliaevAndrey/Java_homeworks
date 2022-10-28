@@ -1,7 +1,7 @@
 package model.services;
 
 import model.ComputerComparator;
-import computerCls.extenders.NoteBook;
+import computerCls.impl.NoteBook;
 import model.interfaces.Sortable;
 import model.interfaces.Printable;
 

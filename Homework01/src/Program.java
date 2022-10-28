@@ -1,7 +1,9 @@
 import java.util.Scanner;
+
 public class Program {
     static Scanner scn = new Scanner(System.in);
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         System.out.println("Калькулятор.");
         boolean flag = true;
         while (flag) {
@@ -12,13 +14,14 @@ public class Program {
             System.out.print("Введите желаемую операцию: ");
             String op = scn.next();
             double res = calculate(a, b, op);
-            if (res - (int)res == 0) System.out.printf("Результат: %d\n", (int)res);
+            if (res - (int) res == 0) System.out.printf("Результат: %d\n", (int) res);
             else if (res > 1e19 || res < 1e-6) System.out.printf("Результат: %.3e\n", res);
             else System.out.printf("Результат: %f\n", res);
             flag = get_flag();
         }
         scn.close();
     }
+
     static double calculate(double a, double b, String op) {
         switch (op) {
             case "+":
@@ -36,7 +39,8 @@ public class Program {
                 return 0;
         }
     }
-    static double get_num(){
+
+    static double get_num() {
         double out = 0;
         if (scn.hasNextDouble()) {
             out = scn.nextDouble();
@@ -45,14 +49,15 @@ public class Program {
         }
         return out;
     }
-    static boolean get_flag(){
+
+    static boolean get_flag() {
         System.out.print("Хотите продолжить? (да|yes / нет|no): ");
         while (true) {
-            String ans = scn.next().toLowerCase();
-            if (ans.equals("нет") || ans.equals("no")) {
+            String ans = scn.next();
+            if (ans.equalsIgnoreCase("нет") || ans.equalsIgnoreCase("no")) {
                 System.out.println("Всего хорошего!");
                 return false;
-            } else if (ans.equals("да") || ans.equals("yes")) {
+            } else if (ans.equalsIgnoreCase("да") || ans.equalsIgnoreCase("yes")) {
                 return true;
             } else {
                 System.out.print("Неразборчиво... попробуйте еще раз: ");
